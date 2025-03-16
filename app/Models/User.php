@@ -21,4 +21,9 @@ class User extends Model
         'password',
         'role'
     ];
+
+    public function moneyWallet()
+    {
+        return $this->hasOne(MoneyWallet::class);
+    }
 }

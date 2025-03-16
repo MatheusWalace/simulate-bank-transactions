@@ -10,20 +10,24 @@ class CreateUserUseCase
     public function __construct(private UserRepositoryInterface $userRepository) {}
 
     public function execute(
-        string $full_name,
+        string $fullName,
         string $document,
         string $email,
         string $password,
-        string $role
+        string $role,
+        int $amount,
+        string $currency
     ): UserModel
     {
         $user = new User(
-            $full_name,
+            $fullName,
             $document,
             $email,
             $password,
-            $role
+            $role,
         );
+
+        $user->wallet(amount: $amount, currency: $currency);
 
         return $this->userRepository->create($user);
     }

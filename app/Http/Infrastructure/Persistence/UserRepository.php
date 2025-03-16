@@ -9,12 +9,19 @@ class UserRepository implements UserRepositoryInterface
 {
   public function create(UserEntity $user): User
   {
-    return User::create([
+    $userCreate = User::create([
       'full_name' => $user->fullName,
       'document' => $user->document,
       'email' => $user->email,
       'password' => $user->password,
       'role' => $user->role
     ]);
+
+    $userCreate->moneyWallet()->create([
+      'amount' => $user->wallet['amount'],
+      'currency' => $user->wallet['currency']
+    ]);
+
+    return $userCreate;
   }
 }
