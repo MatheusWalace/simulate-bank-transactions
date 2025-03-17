@@ -3,7 +3,6 @@ namespace App\Http\Domain\Entities;
 
 class User
 {
-
     public function __construct(
         public string $fullName,
         public string $document,

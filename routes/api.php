@@ -8,3 +8,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('/user', [\App\Http\Controllers\UserController::class, 'store']);
+Route::post('/transactions', [\App\Http\Controllers\TransactionController::class, 'store']);
