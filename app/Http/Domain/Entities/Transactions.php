@@ -8,6 +8,7 @@ class Transactions
         public string $payer,
         public string $payee,
         public float $amount,
-        public string $currency
+        public string $currency,
+        public string $status,
     ) {}
 }

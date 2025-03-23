@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('money_wallet', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId(column: 'user_id')->constrained();
+            $table->foreignId('user_id')->primary()->constrained('users');
             $table->bigInteger(column: 'amount', autoIncrement: false);
             $table->string(column: 'currency', length: 3);
             $table->timestamps();

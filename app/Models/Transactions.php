@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Transactions extends Model
 {
-    protected $table = 'money_wallet';
+    protected $table = 'transactions';
     protected $fillable = [
         'payer_id',
         'payee_id',

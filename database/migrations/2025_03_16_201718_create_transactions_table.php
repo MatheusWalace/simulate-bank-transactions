@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(column: 'payer_id')->constrained();
-            $table->foreignId(column: 'payee_id')->constrained();
+            $table->foreignId('payer_id')->constrained('money_wallet', 'user_id');
+            $table->foreignId('payee_id')->constrained('money_wallet', 'user_id');
             $table->bigInteger(column: 'amount', autoIncrement: false);
             $table->string(column: 'currency', length: 3);
             $table->string(column: 'inconsistency')->nullable();

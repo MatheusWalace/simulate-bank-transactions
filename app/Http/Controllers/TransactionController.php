@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transactions;
+use App\Http\Application\UseCases\TransactionsUseCase;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -12,15 +12,15 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'payer_id' => 'required|string',
-            'payee_id' => 'required|string',
+            'payer' => 'required|string',
+            'payee' => 'required|string',
             'amount' => 'required|numeric',
             'currency' => 'required|string|in:USD,BRL',
         ]);
 
-        $transaction = $transactionsUseCase->execute(
-            payerId: $data['payer_id'],
-            payeeId: $data['payee_id'],
+        $transaction = $this->transactionsUseCase->execute(
+            payer: $data['payer'],
+            payee: $data['payee'],
             amount: $data['amount'],
             currency: $data['currency'],
         );
