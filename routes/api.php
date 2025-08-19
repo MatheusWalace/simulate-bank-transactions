@@ -9,3 +9,4 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/register/user', [\App\Http\Controllers\UserController::class, 'store']);
 Route::post('/transactions', [\App\Http\Controllers\TransactionController::class, 'store']);
+Route::get('/transactions', [\App\Http\Controllers\TransactionController::class, 'getTransactions']);

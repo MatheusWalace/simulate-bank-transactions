@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 
 class TransactionController extends Controller
 {
-    public function __construct(private TransactionsUseCase $transactionsUseCase) {}
+    public function __construct(private readonly TransactionsUseCase $transactionsUseCase) {}
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -36,5 +36,16 @@ class TransactionController extends Controller
             'canceled_at' => $transaction->canceled_at,
             'pending_at' => $transaction->pending_at,
         ], 201);
+    }
+
+    public function getTransactions(Request $request)
+    {
+        $data = $request->validate([
+            'document' => 'required|string',
+        ]);
+
+        $transactions = $this->transactionsUseCase->getTransactions($data['document']);
+
+        return response()->json($transactions, 200);
     }
 }
