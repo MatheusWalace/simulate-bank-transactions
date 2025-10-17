@@ -28,7 +28,7 @@ class MoneyWallet extends Model
 
     public function setPayerTransactions(): HasMany
     {
-        return $this->hasMany(Transactions::class, 'payer_id');
+        return $this->hasMany(Transactions::class, 'payer_id', 'user_id');
     }
 
     public function setPayeeTransactions(): HasMany

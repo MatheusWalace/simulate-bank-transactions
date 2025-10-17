@@ -47,4 +47,9 @@ class TransactionsUseCase
         return $this->transactionsRepository->create($transactions);
 
     }
+
+    public function getTransactions(string $document)
+    {
+        return $this->transactionsRepository->getTransactions(document: $document);
+    }
 }

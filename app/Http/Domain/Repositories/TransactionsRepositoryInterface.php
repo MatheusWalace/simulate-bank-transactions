@@ -9,4 +9,6 @@ interface TransactionsRepositoryInterface
 {
     public function getWalletMoney(int $id): MoneyWallet;
     public function create(Transactions $transactions): TransactionsModel;
+
+    public function getTransactions(string $document);
 }

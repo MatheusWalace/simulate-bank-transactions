@@ -6,6 +6,7 @@ use App\Http\Domain\Entities\Transactions;
 use App\Http\Domain\Repositories\TransactionsRepositoryInterface;
 use App\Models\MoneyWallet;
 use App\Models\Transactions as TransactionsModel;
+use App\Models\User;
 
 class TransactionsRepository implements TransactionsRepositoryInterface
 {
@@ -24,5 +25,17 @@ class TransactionsRepository implements TransactionsRepositoryInterface
         ]);
 
         return $transactions;
+    }
+
+    public function getTransactions(string $document)
+    {
+        return User::where('document', $document)
+            ->with([
+                'moneyWallet',
+                'moneyWallet.setPayerTransactions' => function ($query) {
+                    $query->orderByDesc('created_at');
+                }
+            ])
+            ->first();
     }
 }
